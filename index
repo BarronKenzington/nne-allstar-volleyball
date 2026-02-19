@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NH & MA All Star Volleyball Camp Series</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:    #0d2257;
+    --navy-dk: #071540;
+    --red:     #c8102e;
+    --red-lt:  #e8192e;
+    --white:   #ffffff;
+    --offwhite:#f0f4fa;
+    --gold:    #f0c040;
+    --silver:  #c8d4e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy-dk);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── STARS BACKGROUND ── */
+  .stars-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(200,16,46,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(13,34,87,0.6) 0%, transparent 60%),
+      var(--navy-dk);
+  }
+  .stars-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 50%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 50% 90%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  }
+
+  /* ── DIAGONAL STRIPE ACCENT ── */
+  .stripe-accent {
+    position: absolute; width: 100%; height: 8px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--red) 0px, var(--red) 40px,
+      var(--white) 40px, var(--white) 80px
+    );
+  }
+
+  /* ─────────────── HERO ─────────────── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 60px 24px 80px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(7,21,64,0.3) 0%, rgba(7,21,64,0.85) 100%),
+      repeating-linear-gradient(
+        -45deg,
+        transparent 0px, transparent 60px,
+        rgba(200,16,46,0.04) 60px, rgba(200,16,46,0.04) 62px
+      );
+  }
+
+  /* animated diagonal ribbon */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,16,46,0.15) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50%       { transform: scale(1.15); opacity: 1; }
+  }
+
+  .hero-inner { position: relative; z-index: 2; max-width: 860px; }
+
+  .hero-logo {
+    width: min(260px, 55vw);
+    filter: drop-shadow(0 8px 32px rgba(0,0,0,0.6));
+    animation: logoIn 0.9s cubic-bezier(0.22,1,0.36,1) both;
+    margin-bottom: 24px;
+  }
+
+  @keyframes logoIn {
+    from { opacity: 0; transform: scale(0.75) translateY(20px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(0.7rem, 2vw, 0.9rem);
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold);
+    animation: fadeUp 0.7s 0.3s both;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    line-height: 0.95;
+    color: var(--white);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 60px rgba(200,16,46,0.3);
+    animation: fadeUp 0.7s 0.45s both;
+    margin-bottom: 6px;
+  }
+
+  .hero h1 span { color: var(--red-lt); }
+
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: clamp(1.1rem, 3vw, 1.6rem);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--silver);
+    animation: fadeUp 0.7s 0.6s both;
+    margin-bottom: 36px;
+  }
+
+  .hero-divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin-bottom: 36px;
+    animation: fadeUp 0.7s 0.7s both;
+  }
+
+  .hero-divider span {
+    display: inline-block; width: 40px; height: 3px;
+    background: var(--red);
+  }
+
+  .star-icon { color: var(--gold); font-size: 1rem; }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: rgba(255,255,255,0.8);
+    max-width: 560px; margin: 0 auto 44px;
+    line-height: 1.65;
+    animation: fadeUp 0.7s 0.8s both;
+  }
+
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.7s 0.95s both;
+  }
+
+  .btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 14px 36px; border-radius: 3px;
+    border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(200,16,46,0.5);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200,16,46,0.7);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.5);
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    animation: fadeUp 1s 1.5s both;
+    z-index: 2;
+  }
+
+  .scroll-hint .arrow {
+    width: 20px; height: 20px;
+    border-right: 2px solid rgba(255,255,255,0.3);
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    transform: rotate(45deg);
+    animation: bounce 1.5s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50%       { transform: rotate(45deg) translateY(5px); }
+  }
+
+  /* ─────────────── SECTION WRAPPER ─────────────── */
+  section {
+    position: relative; z-index: 1;
+    padding: 80px 24px;
+  }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.75rem;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(240,192,64,0.4), transparent);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .section-title span { color: var(--red-lt); }
+
+  /* ─────────────── ABOUT SECTION ─────────────── */
+  .about {
+    background: linear-gradient(180deg, var(--navy-dk) 0%, var(--navy) 100%);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.8;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 16px;
+  }
+
+  .about-text p strong { color: var(--white); font-weight: 600; }
+
+  .about-badge {
+    background: rgba(200,16,46,0.12);
+    border: 1px solid rgba(200,16,46,0.3);
+    border-left: 4px solid var(--red);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+
+  .about-badge p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--white) !important;
+    margin: 0 !important;
+  }
+
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-top: 3px solid var(--red);
+    border-radius: 4px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .stat-card:hover { background: rgba(255,255,255,0.07); }
+
+  .stat-card .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-card .num span { color: var(--red-lt); }
+
+  .stat-card .lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 0.8rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  /* ─────────────── EXPERIENCE SECTION ─────────────── */
+  .experience {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .experience::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -55deg,
+      transparent 0px, transparent 80px,
+      rgba(255,255,255,0.015) 80px, rgba(255,255,255,0.015) 82px
+    );
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px; margin-top: 48px;
+    position: relative;
+  }
+
+  .pillar {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 32px 28px;
+    transition: transform 0.25s, background 0.25s, border-color 0.25s;
+    position: relative; overflow: hidden;
+  }
+
+  .pillar::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--navy));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s;
+  }
+
+  .pillar:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.14);
+  }
+
+  .pillar:hover::before { transform: scaleX(1); }
+
+  .pillar-icon {
+    font-size: 2rem; margin-bottom: 14px; display: block;
+  }
+
+  .pillar h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 1.15rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 10px;
+  }
+
+  .pillar p {
+    font-size: 0.93rem; line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ─────────────── COACHES SECTION ─────────────── */
+  .coaches {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dk) 100%);
+  }
+
+  .coaches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; margin-top: 48px;
+  }
+
+  .coach-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 30px 26px;
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+    overflow: hidden;
+  }
+
+  .coach-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--red), transparent);
+    opacity: 0; transition: opacity 0.25s;
+  }
+
+  .coach-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .coach-card:hover::after { opacity: 1; }
+
+  .coach-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem; color: var(--white);
+    margin-bottom: 4px; line-height: 1;
+  }
+
+  .coach-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red-lt); margin-bottom: 16px;
+  }
+
+  .coach-divider {
+    width: 32px; height: 2px;
+    background: rgba(255,255,255,0.15);
+    margin-bottom: 16px;
+  }
+
+  .coach-bio {
+    font-size: 0.9rem; line-height: 1.75;
+    color: rgba(255,255,255,0.68);
+  }
+
+  /* ─────────────── FLAG BANNER ─────────────── */
+  .flag-banner {
+    background: var(--red);
+    padding: 28px 24px;
+    text-align: center;
+    position: relative; z-index: 1;
+    overflow: hidden;
+  }
+
+  .flag-banner::before {
+    content: '★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.4rem; color: rgba(255,255,255,0.07);
+    white-space: nowrap; letter-spacing: 0.5em;
+    width: 200%;
+  }
+
+  .flag-banner p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    letter-spacing: 0.12em;
+    color: var(--white);
+    position: relative;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  /* ─────────────── CTA SECTION ─────────────── */
+  .cta-section {
+    background: var(--navy-dk);
+    text-align: center;
+    padding: 100px 24px;
+    position: relative; overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,16,46,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section .section-title {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem; color: rgba(255,255,255,0.7);
+    max-width: 520px; margin: 0 auto 44px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .cta-btns {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ─────────────── FOOTER ─────────────── */
+  footer {
+    position: relative; z-index: 1;
+    background: var(--navy-dk);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer-stars {
+    display: flex; justify-content: center;
+    gap: 10px; margin-bottom: 14px;
+    color: var(--red); font-size: 0.75rem;
+  }
+
+  footer p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="stripe-accent" style="top:0;"></div>
+
+  <div class="hero-inner">
+    <img
+      src="https://i.imgur.com/placeholder.png"
+      alt="NH & MA All Star Volleyball Camp Series Logo"
+      class="hero-logo"
+      onerror="this.style.display='none'"
+    />
+
+    <div class="hero-eyebrow">★ Northern New England ★</div>
+
+    <h1>All Star<br/><span>Volleyball</span></h1>
+
+    <div class="hero-sub">Camp Series &nbsp;·&nbsp; Train With the Best</div>
+
+    <div class="hero-divider">
+      <span></span>
+      <span class="star-icon">★</span>
+      <span class="star-icon">★</span>
+      <span class="star-icon">★</span>
+      <span></span>
+    </div>
+
+    <p class="hero-tagline">
+      An elite summer training experience bringing together NH & MA's most experienced,
+      respected, and successful volleyball coaches for a high-impact camp series.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#register" class="btn btn-primary">Register Now</a>
+      <a href="#coaches" class="btn btn-outline">Meet the Coaches</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="arrow"></div>
+    Learn More
+  </div>
+
+  <div class="stripe-accent" style="bottom:0;"></div>
+</section>
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section class="about">
+  <div class="container">
+    <div class="section-label">About the Camp</div>
+    <h2 class="section-title">Elite Training.<br/><span>Real Results.</span></h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Elevate your game this summer with the <strong>Northern New England All-Star Volleyball Camp Series</strong> — a premier training experience designed for dedicated players looking to push their skills to the next level.
+        </p>
+        <p>
+          This elite series brings together some of the region's most experienced, respected, and successful coaches for a dynamic and high-impact training environment built around one philosophy:
+        </p>
+        <div class="about-badge">
+          <p>★ &nbsp; Train With the Best &nbsp; ★</p>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="num">5<span>+</span></div>
+          <div class="lbl">Elite Coaches</div>
+        </div>
+        <div class="stat-card">
+          <div class="num"><span>D</span>I</div>
+          <div class="lbl">College Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">1K<span>+</span></div>
+          <div class="lbl">NCAA Career Wins</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">2<span>★</span></div>
+          <div class="lbl">States · NH & MA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
+<section class="experience">
+  <div class="container">
+    <div class="section-label">The Program</div>
+    <h2 class="section-title">What You'll <span>Experience</span></h2>
+
+    <div class="pillars">
+
+      <div class="pillar">
+        <span class="pillar-icon">🎯</span>
+        <h3>Skill Development</h3>
+        <p>Intensive training in serving, passing, setting, attacking, blocking, and defense — with progressions tailored to each player's ability.</p>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-icon">🏐</span>
+        <h3>Small-Group Instruction</h3>
+        <p>Coaches provide personalized attention, helping athletes refine technique and build the consistency needed to compete at a higher level.</p>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-icon">🔥</span>
+        <h3>Competitive Play</h3>
+        <p>Game-based learning and match play to apply skills in real situations, sharpen court awareness, and build competitive toughness.</p>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-icon">📊</span>
+        <h3>Game IQ & Strategy</h3>
+        <p>Chalk talks, video breakdowns, and tactical sessions that teach players how to read the game and make smarter decisions on the court.</p>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-icon">💪</span>
+        <h3>Physical & Mental Training</h3>
+        <p>Conditioning, agility work, and mental performance coaching to help athletes stay sharp, resilient, and confident under pressure.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FLAG BANNER ═══════════════════ -->
+<div class="flag-banner">
+  <p>NH &amp; MA &nbsp;·&nbsp; All Star Volleyball &nbsp;·&nbsp; Camp Series &nbsp;·&nbsp; Train With the Best</p>
+</div>
+
+<!-- ═══════════════════ COACHES ═══════════════════ -->
+<section class="coaches" id="coaches">
+  <div class="container">
+    <div class="section-label">Coaching Staff</div>
+    <h2 class="section-title">Meet the <span>Coaches</span></h2>
+
+    <div class="coaches-grid">
+
+      <div class="coach-card">
+        <div class="coach-name">Matt Bynon</div>
+        <div class="coach-title">Head Coach · Camp Director</div>
+        <div class="coach-divider"></div>
+        <p class="coach-bio">Matt Bynon brings over 20 years of experience as a player, coach, and recruiter. A former NCAA All-American and three-time Defensive Player of the Year at Rivier University — where he led the nation in digs in 2012 — Matt earned AVCA 30 Under 30 recognition and built a powerhouse program at Windham High School, winning a State Championship in 2021 and reaching five consecutive State Final Fours. His collegiate coaching career has included stops at UMass Lowell (Division I), Southern New Hampshire University, and Rivier University.</p>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-name">Craig Kolek</div>
+        <div class="coach-title">NCAA & PVL Head Coach</div>
+        <div class="coach-divider"></div>
+        <p class="coach-bio">With 27 years as an NCAA collegiate coach, Craig Kolek is one of the most decorated volleyball minds in the country — 1,000+ career wins, 22 conference championships, two NCAA Final Four appearances, and 19 Coach of the Year honors. A 3-time Hall of Fame inductee who has developed 17 All-Americans, Craig also runs CCK Performance Training, helping athletes build the mental edge to perform under pressure.</p>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-name">Jeff Costa</div>
+        <div class="coach-title">Head Coach · Rivier University</div>
+        <div class="coach-divider"></div>
+        <p class="coach-bio">Jeff Costa has spent his career building and elevating volleyball programs at the collegiate level. Currently the Head Coach at Rivier University, Jeff previously served as Head Coach at Fisher College and led Merrimack College from 2015 to 2022 — including guiding the program through its historic elevation to NCAA Division I in 2019.</p>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-name">Terry Matatall</div>
+        <div class="coach-title">Co-Founder · Mill City VBC</div>
+        <div class="coach-divider"></div>
+        <p class="coach-bio">A four-time conference champion and two-time 1st Team All-Conference honoree at Rivier University, Terry Matatall competed in the NCAA Final Four, Elite Eight, and the Premier Volleyball League with Team NE. He channeled that experience into coaching, co-founding Mill City Volleyball Club in 2017 and serving as an assistant coach at Merrimack College.</p>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-name">Mike Hovnanian</div>
+        <div class="coach-title">Girls Director · Mill City VBC</div>
+        <div class="coach-divider"></div>
+        <p class="coach-bio">Mike Hovnanian has built a reputation as one of New England's most versatile club volleyball coaches, serving as both Boys and Girls Head Coach at Mill City VBC and currently as Girls Director. A two-time GNAC Champion and NCAA Final Four participant at Rivier University, Mike brings international experience and a well-rounded perspective to every athlete he works with.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="cta-section" id="register">
+  <div class="container">
+    <div class="section-label" style="justify-content:center; margin-bottom:16px;">★ &nbsp; Limited Spots Available &nbsp; ★</div>
+    <h2 class="section-title">Ready to Train<br/><span>With the Best?</span></h2>
+    <p>Join the NH & MA All Star Volleyball Camp Series this summer and take your game to the next level under the guidance of elite coaches.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn btn-primary">Register Now</a>
+      <a href="#" class="btn btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <div class="footer-stars">★ ★ ★ ★ ★</div>
+  <p>NH &amp; MA All Star Volleyball Camp Series &nbsp;·&nbsp; Northern New England &nbsp;·&nbsp; Train With the Best</p>
+</footer>
+
+</body>
+</html>
