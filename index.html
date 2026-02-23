@@ -414,8 +414,14 @@
 
   .coaches-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px; margin-top: 48px;
+  }
+
+  @media (max-width: 680px) {
+    .coaches-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .coach-card {
@@ -426,6 +432,93 @@
     position: relative;
     transition: transform 0.25s, box-shadow 0.25s;
     overflow: hidden;
+  }
+
+  .director-hero {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(200,16,46,0.08) 100%);
+    border: 1px solid rgba(200,16,46,0.25);
+    border-radius: 8px;
+    padding: 40px;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .director-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 4px;
+    background: var(--red);
+  }
+
+  .director-photo {
+    flex-shrink: 0;
+  }
+
+  .director-photo img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--red);
+    box-shadow: 0 8px 32px rgba(200,16,46,0.25);
+  }
+
+  .director-info {
+    flex: 1;
+  }
+
+  .director-badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--red);
+    padding: 5px 14px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+  }
+
+  .director-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .director-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+
+  .director-bio {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+  }
+
+  @media (max-width: 680px) {
+    .director-hero {
+      flex-direction: column;
+      text-align: center;
+      padding: 32px 24px;
+      gap: 24px;
+    }
+    .director-name { font-size: 2rem; }
   }
 
   .coach-card::after {
@@ -695,20 +788,25 @@
     <div class="section-label">Coaching Staff</div>
     <h2 class="section-title">Meet the <span>Coaches</span></h2>
 
+    <div class="director-hero">
+      <div class="director-photo">
+        <img src="images/craig-kolek.png" alt="Craig Kolek" />
+      </div>
+      <div class="director-info">
+        <div class="director-badge">Camp Director</div>
+        <div class="director-name">Craig Kolek</div>
+        <div class="director-title">NCAA & PVL Head Coach</div>
+        <p class="director-bio">With 27 years as an NCAA collegiate coach, Craig Kolek is one of the most decorated volleyball minds in the country — 1,000+ career wins, 22 conference championships, two NCAA Final Four appearances, and 19 Coach of the Year honors. A 3-time Hall of Fame inductee who has developed 17 All-Americans, Craig also runs CCK Performance Training, helping athletes build the mental edge to perform under pressure.</p>
+      </div>
+    </div>
+
     <div class="coaches-grid">
 
       <div class="coach-card">
         <div class="coach-name">Matt Bynon</div>
-        <div class="coach-title">Head Coach · Camp Director</div>
+        <div class="coach-title">Co-Founder · Mill City VBC</div>
         <div class="coach-divider"></div>
         <p class="coach-bio">Matt Bynon brings over 20 years of experience as a player, coach, and recruiter. A former NCAA All-American and three-time Defensive Player of the Year at Rivier University — where he led the nation in digs in 2012 — Matt earned AVCA 30 Under 30 recognition and built a powerhouse program at Windham High School, winning a State Championship in 2021 and reaching five consecutive State Final Fours. His collegiate coaching career has included stops at UMass Lowell (Division I), Southern New Hampshire University, and Rivier University.</p>
-      </div>
-
-      <div class="coach-card">
-        <div class="coach-name">Craig Kolek</div>
-        <div class="coach-title">NCAA & PVL Head Coach</div>
-        <div class="coach-divider"></div>
-        <p class="coach-bio">With 27 years as an NCAA collegiate coach, Craig Kolek is one of the most decorated volleyball minds in the country — 1,000+ career wins, 22 conference championships, two NCAA Final Four appearances, and 19 Coach of the Year honors. A 3-time Hall of Fame inductee who has developed 17 All-Americans, Craig also runs CCK Performance Training, helping athletes build the mental edge to perform under pressure.</p>
       </div>
 
       <div class="coach-card">
@@ -744,7 +842,7 @@
     <p>Join the NH & MA All Star Volleyball Camp Series this summer and take your game to the next level under the guidance of elite coaches.</p>
     <div class="cta-btns">
       <a href="https://forms.gle/C1BD6DooLTgqjA7Y6" target="_blank" class="btn btn-primary">Register Now</a>
-      <a href="#" class="btn btn-outline">Contact Us</a>
+      <a href="mailto:nevballstars@gmail.com" class="btn btn-outline">Contact Us</a>
     </div>
   </div>
 </section>
